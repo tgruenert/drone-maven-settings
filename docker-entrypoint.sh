@@ -12,5 +12,5 @@ for _kv in $(env); do
     fi
 done
 
-mkdir -p $HOME/.m2
-echo "${TEMPLATE:-$(cat /usr/local/share/maven/settings.tpl.xml)}" | envsubst -no-unset -o ${OUTPUT:-$HOME/.m2/settings.xml}
+test -d .mvn || mkdir .mvn
+echo "${TEMPLATE:-$(cat /usr/local/share/maven/settings.tpl.xml)}" | envsubst -no-unset -o ${OUTPUT:-.mvn/local-settings.xml}
