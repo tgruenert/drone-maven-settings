@@ -12,5 +12,8 @@ for _kv in $(env); do
     fi
 done
 
-test -d .mvn || mkdir .mvn
-echo "${TEMPLATE:-$(cat /usr/local/share/maven/settings.tpl.xml)}" | envsubst -no-unset -o ${OUTPUT:-.mvn/local-settings.xml}
+test -v LOCAL_CACHE || export LOCAL_CACHE='${user.home}/.m2/repository'
+test -v OUTPUT || test -d .mvn || mkdir .mvn
+test -v OUTPUT || OUTPUT=".mvn/release-settings.xml" && echo " -s $OUTPUT" >> .mvn/maven.config
+test -v CI_WORKSPACE || OUTPUT="/dev/stdout"
+echo ${TEMPLATE:-$(cat /usr/local/share/maven/settings.tpl.xml)} | envsubst -no-unset -o $OUTPUT
