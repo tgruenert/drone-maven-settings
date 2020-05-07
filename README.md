@@ -28,6 +28,10 @@ This image uses the following environment variables for rendering the settings.x
 - *PASSWORD*: Used as the password for accessing both repos
 - *LOCAL_CACHE*: Used to change the local maven repository, defaults to `${user.home}/.m2/repository`otherwise
 
+Invoke either from command line via:
+`docker run --rm -eREPO_URL=http://myrepo -eUSERNAME=xxx -ePASSWORD=xxx kamalook/drone-maven-settings`
+where the settings.xml is rendered to stdout or use via drone.
+
 A possible *.drone.yml* could look like:
 ```
 kind: pipeline
