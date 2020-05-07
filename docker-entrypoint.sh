@@ -11,6 +11,7 @@ isenv OUTPUT || OUTPUT=".mvn/release-settings.xml" && echo " -s $OUTPUT" >> .mvn
 isenv CI_WORKSPACE && echo "Rendering $OUTPUT" || OUTPUT="/dev/stdout"
 
 export PROPERTIES=$(env2args dot '<$k>$v</$k>' PLUGIN_PROPERTY_)
+for _env in $(env2args); do export $_env; done
 
 if isenv 'TEMPLATE'; then
 	echo $TEMPLATE | envsubst -no-unset -o $OUTPUT
