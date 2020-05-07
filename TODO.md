@@ -1,4 +1,4 @@
 # ToDos
 - [x] output xml formatted
 - [ ] master password
-- [ ] allow custom properties
+- [x] allow custom properties

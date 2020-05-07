@@ -4,6 +4,7 @@ Purpose of this docker image is to create a maven settings.xml from a few parame
 - A settings.xml template, which is rendered using enviroment variables (see below) to the local workspace, so no extra volume is necessary for allowing persistent access over multiple drone steps
 - Appends `--settings` parameters to `.mvn/maven.config`, so no additional command line parameter is necessary, when invoking maven
 - Strips drone plugin environments variables prefixed with *PLUGIN_*, so simple drone plugin settings could be used (see below for example)
+- Allows custom properties in .drone.yml to be defined
 - Setup for either a single repo, or two repos (snapshots, releases)
 - username and password for the above mentioned repos
 - Optionally setup a single repo as mirroring central as proxy
@@ -46,6 +47,8 @@ steps:
       username: { from_secret: repo-username }
       password: { from_secret: repo-password }
       mirror: none
+      property_xxx: yyy
+      property_my_param: value
   - name: build
     image: maven:3-jdk-11-slim
     commands: [mvn -B -V deploy -DperformRelease]
