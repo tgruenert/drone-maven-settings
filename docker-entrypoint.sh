@@ -19,3 +19,5 @@ if isenv 'TEMPLATE'; then
 else
 	cat /usr/local/share/maven/settings.tpl.xml | envsubst -no-unset -o $OUTPUT
 fi
+
+echo ".mvn/maven.config=$(cat .mvn/maven.config)"
