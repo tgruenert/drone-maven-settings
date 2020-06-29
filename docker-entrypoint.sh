@@ -11,7 +11,7 @@ for _env in $(env2args); do export $_env; done
 isenv LOCAL_CACHE && test "${LOCAL_CACHE:0:1}" != "/" && export LOCAL_CACHE="$PWD/$LOCAL_CACHE"
 isenv LOCAL_CACHE || export LOCAL_CACHE='${user.home}/.m2/repository'
 isenv OUTPUT || test -d .mvn || mkdir .mvn
-isenv OUTPUT || OUTPUT=".mvn/release-settings.xml" && echo " -s $OUTPUT" >> .mvn/maven.config
+isenv OUTPUT || OUTPUT=".mvn/release-settings.xml" && echo -n " -s $OUTPUT" >> .mvn/maven.config
 isenv DRONE_WORKSPACE && echo "Rendering $OUTPUT" || OUTPUT="/dev/stdout"
 
 if isenv 'TEMPLATE'; then
