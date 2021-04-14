@@ -7,7 +7,7 @@ function isenv {
 
 MAVEN_REVISION=${DRONE_SEMVER:-${DRONE_BRANCH/\//-}}
 MAVEN_SHA1=${DRONE_COMMIT_SHA:0:8}
-MAVEN_CHANGELIST=$(test -z "$DRONE_SEMVER" && echo "-SNAPSHOT" || true)
+MAVEN_CHANGELIST=$(test -z "${DRONE_SEMVER:-}" && echo "-SNAPSHOT" || true)
 
 export PROPERTIES=$(env2args dot '<$k>$v</$k>' PLUGIN_PROPERTY_)
 for _env in $(env2args); do export $_env; done
