@@ -20,16 +20,19 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: tgruenert/drone-maven-settings
+          images: tgruenert/drone-maven-settings,quay.io/tgruenert/drone-maven-settings
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
+          registry: quay.io
           username: ${{ secrets.DOCKERHUB_USER_NAME }}
           password: ${{ secrets.DOCKERHUB_USER_PASSWORD }}
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          # push: ${{ github.event_name != 'pull_request' }}
+          push: true
+          # tags: ${{ steps.meta.outputs.tags }}
+          tags: quay.io/${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
