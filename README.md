@@ -27,6 +27,9 @@ This image uses the following environment variables for rendering the settings.x
 - *SNAPSHOTS_URL*: Used as snapshots repo
 - *USERNAME*: Used as the username for accessing both repos
 - *PASSWORD*: Used as the password for accessing both repos
+- *DOCKER_REPO_URL*: Docker Repo ID if using  maven docker plugin
+- *DOCKER_REPO_USERNAME*: Used docker repo username for access
+- *DOCKER_REPO_PASSWORD*: Used docker repo password for access
 - *LOCAL_CACHE*: Used to change the local maven repository, defaults to `${user.home}/.m2/repository`otherwise
 
 Invoke either from command line via:
@@ -40,7 +43,7 @@ name: default
 
 steps:
   - name: init maven
-    image: kamalook/drone-maven-settings
+    image: dronee/drone-maven-settings
     settings:
       releases_url: { from_secret: repo-releases }
       snapshots_url: { from_secret: repo-snapshots }

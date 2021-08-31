@@ -73,5 +73,16 @@
 			<username>$USERNAME</username>
 			<password>$PASSWORD</password>
 		</server>
+		<server>
+			<id>central-proxy</id>
+			<username>$USERNAME</username>
+			<password>$PASSWORD</password>
+		</server>
+		<server>
+			<id>$DOCKER_REPO_URL</id>
+			<username>$DOCKER_REPO_USERNAME</username>
+			<password>$DOCKER_REPO_PASSWORD</password>
+		</server>
+
 	</servers>
 </settings>
